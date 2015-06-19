@@ -1,0 +1,24 @@
+{
+  "name": "workshop-es6",
+  "version": "0.0.0",
+  "description": "A practical tour around ECMAScript 6.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel/register",
+    "watch:test": "npm test -- -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/elkorn/workshop-es6.git"
+  },
+  "author": "Korneliusz Caputa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elkorn/workshop-es6/issues"
+  },
+  "homepage": "https://github.com/elkorn/workshop-es6",
+  "devDependencies": {
+    "babel": "^5.5.8",
+    "mocha": "^2.2.5"
+  }
+}
