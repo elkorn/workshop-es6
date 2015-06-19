@@ -5,7 +5,7 @@
   logOnBtn.id = 'gh_logon';
   logOnBtn.className = 'ion-social-github';
 
-  var ref = new Firebase('https://elkorn-workshops.firebaseio.com/react/presentation/slide');
+  var ref = new Firebase('https://elkorn-workshops.firebaseio.com/es6/presentation/slide');
   var isConductor = window.location.search === '?conduct';
 
   function logOn() {
