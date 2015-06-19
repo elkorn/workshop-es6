@@ -19,6 +19,7 @@
   "homepage": "https://github.com/elkorn/workshop-es6",
   "devDependencies": {
     "babel": "^5.5.8",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "should": "^7.0.1"
   }
 }
