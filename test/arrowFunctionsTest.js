@@ -44,7 +44,7 @@ describe('Arrow functions', () => {
     noScope.should.throw();
   });
 
-  it('be helpful for exploring λ-calculus', () => {
+  it('are helpful for exploring λ-calculus', () => {
     // Just to show the idea, this is of course totally superfluous. :)
     let λ = expression => boundVar => expression(boundVar);
     let id = λ(x => x);
@@ -57,7 +57,6 @@ describe('Arrow functions', () => {
 
     multiply(12)(3).should.be.equal(36);
     multiply2(12)(3).should.be.equal(36);
-
 
     // Church's notation
     // fix = λf.(λx.f(λv.x(x)(v)))(λx.f(λv.x(x)(v)))
