@@ -18,6 +18,57 @@ describe('Symbols', () => {
     (Symbol.for('foo') === Symbol.for('foo')).should.be.equal(true);
   });
 
+  it('can be used as property keys', () => {
+    let obj = {};
+    const KEY = Symbol();
+
+    obj[KEY] = 123;
+
+    obj[KEY].should.be.equal(123);
+  });
+
+  it('can be used to make objects iterable', () => {
+    let iterable = {
+      [Symbol.iterator]() {
+        let data = ['hello', 'world'];
+        let index = 0;
+        return {
+          next() {
+            if (index < data.length) {
+              return {
+                value: data[index++]
+              };
+            } else {
+              return {
+                done: true
+              };
+            }
+          }
+        };
+      }
+    };
+
+    let res = [];
+    for (let x of iterable) {
+      res.push(x);
+    }
+
+    res.should.be.eql(['hello', 'world']);
+  });
+
+  it('can represent enum values', () => {
+    const MONDAY = Symbol();
+    const FRIDAY = Symbol();
+
+    let actions = {};
+
+    actions[MONDAY] = () => 'Be somber and quiet';
+    actions[FRIDAY] = () => 'Laugh and be merry!';
+
+    actions[MONDAY]().should.be.equal('Be somber and quiet');
+    actions[FRIDAY]().should.be.equal('Laugh and be merry!');
+  });
+
   it('allow having safe privacy with prototypes without function closures', () => {
     let Clazz = (function() {
       let privateStuff = {};
