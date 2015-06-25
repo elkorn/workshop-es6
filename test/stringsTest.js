@@ -1,5 +1,7 @@
 'use strict';
 
+import I18n from '../src/i18n';
+
 describe('Strings', () => {
   it('allow interpolating variables in them', () => {
     let val1 = 12;
@@ -31,5 +33,25 @@ supported`;
     'cat'.startsWith('at').should.be.true;
     'catatonia'.includes('aton').should.be.true;
     'NaN'.repeat(3).should.be.equal('NaNNaNNaN');
+  });
+
+  it('can be tagged with functions', () => {
+    let messageBundle_de = {
+      'Hello {0}, you have {1} in your bank account.': 'Hallo {0}, Sie haben {1} auf Ihrem Bankkonto.'
+    };
+
+    let name = 'Bob';
+    let amount = 1234.56;
+    let i18n;
+
+    i18n = I18n.use({
+      locale: 'de-DE',
+      defaultCurrency: 'EUR',
+      messageBundle: messageBundle_de
+    });
+
+    let expectedAmount = '€1,234.56';
+
+    (i18n `Hello ${name}, you have ${amount}:c in your bank account.`).should.be.equal(`Hallo ${name}, Sie haben ${expectedAmount} auf Ihrem Bankkonto.`);
   });
 });
