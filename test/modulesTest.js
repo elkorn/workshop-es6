@@ -11,8 +11,7 @@ import * as namedExports from '../src/named-exports';
 import importedFunction from '../src/default-exports-function';
 import ImportedClass from '../src/default-exports-class';
 
-
-describe('1. Modules', () => {
+describe('Modules', () => {
   it('allow named exports', () => {
     square(12).should.be.equal(144);
     diag(3, 4).should.be.equal(5);
