@@ -436,10 +436,242 @@ code, pre {
 <script src="firebase-pilot.js"></script></section>
   </div>
   <div class="slide hidden" id="slide-2">
-    <section class="slide-content"><h1 id="alternative-to-es6-coffeescript">Alternative to ES6: CoffeeScript</h1>
+    <section class="slide-content"><h1 id="freshly-standardized-javascript">Freshly standardized JavaScript</h1>
+<p>Proposals started in 2008, the final version of the specification was established in June 2015.</p>
 </section>
   </div>
   <div class="slide hidden" id="slide-3">
+    <section class="slide-content"><h1 id="new-features">New features</h1>
+<p>There is a lot of stuff that was not available natively in ES5.</p>
+<p>We&#39;ll go over some of it today.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><h1 id="compatibility">Compatibility</h1>
+<p>Until the browser vendors implement the ES6 standard, we have to use transpilers.</p>
+<p>The go-to resource for this matter is <a href="https://kangax.github.io/compat-table/es6/">https://kangax.github.io/compat-table/es6/</a>.</p>
+<p>Generally, you can use ES6 today in the browser as well as in node.js without problems if you use a transpiler.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h1 id="the-features">The Features</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><h3 id="feature-modules">Feature: modules</h3>
+<p>ES6 modules constitute a format that would fit both into client-side and server-side solutions.</p>
+<p>That is, they can be used asynchronously (hat-tip in the direction of AMD) as well as synchronously (CommonJS / Node module approach).</p>
+<p>It is noteworthy that cyclic dependencies are supported by ES6 modules, which is useful e.g. in DOM node relationships.</p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-7">
+    <section class="slide-content"><h3 id="feature-modules">Feature: modules</h3>
+<p>Example usage on the client-side (via SystemJS):</p>
+<pre><code>System.import(&#39;some_module&#39;)
+.then(some_module =&gt; {
+    // Use some_module
+})
+.catch(error =&gt; {
+    ···
+});</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><h3 id="feature-modules">Feature: modules</h3>
+<p>Example usage on the client-side (native):</p>
+<pre><code>&lt;script type=&quot;module&quot;&gt;
+    // This module will be loaded asynchronously
+    import $ from &#39;lib/jquery&#39;;
+    var x = 123;
+
+    // The current scope is not global
+    console.log(&#39;$&#39; in window); // false
+    console.log(&#39;x&#39; in window); // false
+
+    // `this` still refers to the global object
+    console.log(this === window); // true
+&lt;/script&gt;</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h3 id="feature-arrow-functions">Feature: arrow functions</h3>
+<p>Arrow functions provide a clean notation for simple functions.</p>
+<p>More importantly though, we get a lexical-scope <code>this</code> inside them (<code>this</code> is still being bound according to the &#39;old&#39; rules within normally declared functions).</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h3 id="feature-classes">Feature: classes</h3>
+<p>ES6 classes constitute syntax sugar on the prototype-based inheritance system known from previous versions of the standard.</p>
+<p>We just get a &#39;normal&#39; way to define all the stuff that was available before.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h3 id="feature-symbols">Feature: symbols</h3>
+<p>Symbols are a new primitive type.</p>
+<p>They are inherently unique, that is you cannot create two Symbol instances that are equal.</p>
+<p>As you can imagine, they are pretty useful when used as keys for objects and data structures.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><h3 id="feature-symbols">Feature: symbols</h3>
+<p>There are a few pre-defined &#39;static&#39; symbols:</p>
+<ul>
+<li><code>Symbol.iterator</code> - used to make an object iterable</li>
+<li><code>Symbol.unscopables</code> - hides properties from the <code>with</code> statements</li>
+<li><code>Symbol.species</code> - helpful for cloning Typed Arrays, RegExps, Promises and ArrayBuffers.</li>
+<li><code>Symbol.isConcatSpreadable</code> - indicates how <code>Array.prototype.concat</code> should behave when dealing with indexed elements of an object.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
+    <section class="slide-content"><h3 id="feature-collections">Feature: collections</h3>
+<p>ES6 introduces a few new collection types to the table: <code>Map</code>, <code>Set</code>, <code>WeakMap</code> and <code>WeakSet</code>. They behave just as you would expect.</p>
+<p>Additionally, <code>WeakMap</code> and <code>WeakSet</code> keep memory usage in check for you.</p>
+<p>There are also a few new convenience methods on <code>Array</code>.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><h3 id="feature-iterables-and-iterators">Feature: iterables and iterators</h3>
+<p>Iterability has been introduced as a first-class concept in ES6.</p>
+<p>We now have access to iterators which operate on pretty much anything we deem to make iterable by implementing a method, whose name is <code>Symbol.iterator</code>.</p>
+<p>All collections are iterable by default.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-15">
+    <section class="slide-content"><h3 id="feature-generators">Feature: generators</h3>
+<p>Generators are functions that can be paused and resumed.</p>
+<p>They can be viewed as <em>somewhat similar</em> to streams, but have a wider array of applications.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-16">
+    <section class="slide-content"><h3 id="feature-generators">Feature: generators</h3>
+<p>Generators can be used in three ways:</p>
+<ul>
+<li>Iterators (data producers)</li>
+</ul>
+<pre><code>function* simpleGenerator(howMany) {
+    let x = 0;
+    while (x &lt; howMany) {
+        yield ++x;
+    }
+
+    return &#39;DONE&#39;;
+}
+
+let gen = simpleGenerator(3);
+gen.next();
+gen.next();
+gen.next();
+gen.next();</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><h3 id="feature-destructuring">Feature: destructuring</h3>
+<p>Thanks to destructuring, we can now pattern match on objects and arrays to extract values from them.</p>
+<p>Destructuring is useful mainly in context of variables, function parameters and function return values.</p>
+<p>It also allows us to elegantly express default function parameter values instead of writing <code>var value = param || SOME_DEFAULT;</code> everywhere.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h3 id="feature-spread-operator">Feature: spread operator</h3>
+<p>The spread operator (<code>...</code>) allows us to convert iterable objects to arrays.</p>
+<p>It&#39;s pretty powerful. :)</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h3 id="feature-string-goodies">Feature: string goodies</h3>
+<p>Strings also got some love in ES6.</p>
+<p>The main new feature are backtick (i.e. <code>someStr</code>) which are templatable.</p>
+<p>There are also a few convenience methods.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"><h3 id="feature-math-and-numbers">Feature: math and numbers</h3>
+<p>A hat-tip in the direction of game developers, the <code>Math</code> method set has been extended to include a few useful functions (mainly trigonometric).</p>
+<p>To help with IEEE number quirks, convenience methods have been introduced as static <code>Number</code> members.</p>
+<p>Check this presentation out: <a href="https://www.youtube.com/watch?v=MqHDDtVYJRI">https://www.youtube.com/watch?v=MqHDDtVYJRI</a>.
+It sheds a lot of light on the whys and hows of numbers in JS.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
+    <section class="slide-content"><h3 id="feature-generators">Feature: generators</h3>
+<p>Generators can be used in three ways:</p>
+<ul>
+<li>Observers (data consumers)</li>
+</ul>
+<pre><code>function* dataConsumer() {
+    console.log(&#39;Started&#39;);
+    console.log(`1. ${yield}`); // (A)
+    console.log(`2. ${yield}`);
+    return &#39;result&#39;;
+}
+
+let genObj = dataConsumer();
+
+genObj.next();
+genObj.next(&#39;a&#39;);</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-22">
+    <section class="slide-content"><h3 id="feature-generators">Feature: generators</h3>
+<p>Generators can be used in three ways:</p>
+<ul>
+<li>Coroutines (data producers + data consumers)</li>
+</ul>
+<pre><code>co(function* () {
+    try {
+        let [croftStr, bondStr] = yield Promise.all([  // (A)
+            getFile(&#39;http://localhost:8000/croft.json&#39;),
+            getFile(&#39;http://localhost:8000/bond.json&#39;),
+        ]);
+        let croftJson = JSON.parse(croftStr);
+        let bondJson = JSON.parse(bondStr);
+
+        console.log(croftJson);
+        console.log(bondJson);
+    } catch (e) {
+        console.log(&#39;Failure to read: &#39; + e);
+    }
+});</code></pre>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-23">
+    <section class="slide-content"><h3 id="feature-promises">Feature: promises</h3>
+<p>Promises are native in ES6.</p>
+<p>I&#39;m leaving them out though, because the API is pretty well known from current libraries.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-24">
+    <section class="slide-content"><h1 id="deployment-strategies">Deployment strategies</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-25">
+    <section class="slide-content"><h3 id="deployment-strategies">Deployment strategies</h3>
+<p>As I&#39;ve said earlier, you can use ES6 today with transpilers.</p>
+<p>You need to hook up a build step to your pipeline that will do that for you.</p>
+<p>There is a ton of tools available for  that, summarized nicely here:
+<a href="https://github.com/addyosmani/es6-tools">https://github.com/addyosmani/es6-tools</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-26">
+    <section class="slide-content"><h1 id="resources">Resources</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-27">
+    <section class="slide-content"><h3 id="resources">Resources</h3>
+<p>Pretty much all you need to know is here: <a href="https://leanpub.com/exploring-es6">https://leanpub.com/exploring-es6</a>. (Some of  the examples are from there)</p>
+<p>There is also an ongoing series of MDN articles: <a href="https://hacks.mozilla.org/category/es6-in-depth/">https://hacks.mozilla.org/category/es6-in-depth/</a>.</p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-28">
+    <section class="slide-content"><h1 id="and-now-">And now...</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-29">
+    <section class="slide-content"><h1 id="alternative-to-es6-coffeescript">Alternative to ES6: CoffeeScript</h1>
+<center>(Kamil Durkiewicz)</center></section>
+  </div>
+  <div class="slide hidden" id="slide-30">
     <section class="slide-content"><h3 id="language-features">Language features</h3>
 <ul>
 <li>transcompiles to JavaScript</li>
@@ -449,7 +681,7 @@ code, pre {
 </ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-4">
+  <div class="slide hidden" id="slide-31">
     <section class="slide-content"><h3 id="es6-features-in-coffeescript">ES6 features in CoffeeScript</h3>
 <table>
 <thead>
@@ -507,7 +739,7 @@ code, pre {
 </table>
 </section>
   </div>
-  <div class="slide hidden" id="slide-5">
+  <div class="slide hidden" id="slide-32">
     <section class="slide-content"><h3 id="what-is-better-in-coffeescript-1-3-">What is better in CoffeeScript (1/3)</h3>
 <ul>
 <li><p>More functional style</p>
@@ -524,7 +756,7 @@ code, pre {
 </ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-6">
+  <div class="slide hidden" id="slide-33">
     <section class="slide-content"><h3 id="what-is-better-in-coffeescript-2-3-">What is better in CoffeeScript (2/3)</h3>
 <ul>
 <li><p>Performance</p>
@@ -535,7 +767,7 @@ code to imperative code (which seems to be easier for JS engines to optimize)</p
 </ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-7">
+  <div class="slide hidden" id="slide-34">
     <section class="slide-content"><h3 id="what-is-better-in-coffeescript-3-3-">What is better in CoffeeScript (3/3)</h3>
 <ul>
 <li><p>Better block strings <a href="http://coffeescript.org/#strings">coffeescript.org/#strings</a></p>
@@ -555,7 +787,7 @@ code to imperative code (which seems to be easier for JS engines to optimize)</p
 </ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-8">
+  <div class="slide hidden" id="slide-35">
     <section class="slide-content"><div class="author">
   <h1 class="name">Korneliusz Caputa</h1>
     <h3 class="twitter">
