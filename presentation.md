@@ -17,7 +17,7 @@ controls: true
 
 --
 # Alternative to ES6: CoffeeScript
-
+<center>(Kamil Durkiewicz)</center>
 --
 ### Language features
  
