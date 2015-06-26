@@ -10,14 +10,6 @@ describe('Collections', () => {
    - property keys have to be strings
    - the only sensible way to ask how many properties an object has is Object.keys(obj).length which requires iterating over them.
    */
-  describe('Problems with ES5 collections', () => {
-    // it('name collisions', () => {
-    //   let obj = {
-    //     a: 1
-    //   };
-    // });
-  });
-
   describe('Set', () => {
     var s;
     beforeEach(() => {
