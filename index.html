@@ -436,6 +436,126 @@ code, pre {
 <script src="firebase-pilot.js"></script></section>
   </div>
   <div class="slide hidden" id="slide-2">
+    <section class="slide-content"><h1 id="alternative-to-es6-coffeescript">Alternative to ES6: CoffeeScript</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-3">
+    <section class="slide-content"><h3 id="language-features">Language features</h3>
+<ul>
+<li>transcompiles to JavaScript</li>
+<li>syntax inspired by Ruby, Python and Haskell</li>
+<li>introduced 5+ years ago</li>
+<li><a href="http://coffeescript.org">coffeescript.org</a></li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-4">
+    <section class="slide-content"><h3 id="es6-features-in-coffeescript">ES6 features in CoffeeScript</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:center">CoffeeScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">Arrows</td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:right">Classes</td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:right">Template Strings</td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:right">Destructuring</td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:right">Map, Set and WeakMap</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:right">Destructuring</td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:right">for.. of</td>
+<td style="text-align:center">+</td>
+</tr>
+<tr>
+<td style="text-align:right">New math features</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:right">Modules</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:right">Computed property keys</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:right">Default + Rest + Spread</td>
+<td style="text-align:center">+</td>
+</tr>
+</tbody>
+</table>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h3 id="what-is-better-in-coffeescript-1-3-">What is better in CoffeeScript (1/3)</h3>
+<ul>
+<li><p>More functional style</p>
+<p>Everything is an expression, including conditionals, loops, try/catch and function&#39;s body (return is not required)</p>
+</li>
+<li><p>Lighter syntax. More friendly for VCSs.</p>
+</li>
+<li><p>Linting tools are not so much needed.</p>
+<ul>
+<li>compiled code passes JsLint</li>
+<li>compiler takes care to make sure that all of your variables are properly declared within lexical scope — you never need to write  var yourself&quot;</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><h3 id="what-is-better-in-coffeescript-2-3-">What is better in CoffeeScript (2/3)</h3>
+<ul>
+<li><p>Performance</p>
+<p>Array.prototype.forEach, Array.prototype.map etc. are much slower than for loop in JavaScript.</p>
+<p>You don&#39;t have to resign from functional programming style. CoffeeScript compiler converts the
+code to imperative code (which seems to be easier for JS engines to optimize)</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-7">
+    <section class="slide-content"><h3 id="what-is-better-in-coffeescript-3-3-">What is better in CoffeeScript (3/3)</h3>
+<ul>
+<li><p>Better block strings <a href="http://coffeescript.org/#strings">coffeescript.org/#strings</a></p>
+</li>
+<li><p>Block regexes</p>
+</li>
+<li><p>existential operator</p>
+<p><code>zip = lottery.drawWinner?().address?.zipcode</code></p>
+</li>
+<li><p>additional operators</p>
+<p><code>a ** b</code> (<code>Math.pow(a, b)</code>)</p>
+<p><code>a // b</code> (<code>Math.floor(a / b)</code>)</p>
+</li>
+<li><p>chained comparison</p>
+<p><code>healthy = 200 &gt; cholesterol &gt; 60</code></p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-8">
     <section class="slide-content"><div class="author">
   <h1 class="name">Korneliusz Caputa</h1>
     <h3 class="twitter">
