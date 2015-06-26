@@ -135,19 +135,9 @@ describe('Collections', () => {
 
       it('union', () => {
         let union = (...sets) => {
-          let result = new Set();
-
-          for (let set of sets) {
-            for (let val of set) {
-              if(result.has(val)) {
-                continue;
-              }
-
-              result.add(val);
-            }
-          }
-
-          return result;
+          return new Set(sets.reduce((result, set) => {
+            return result.concat(...set);
+          }, []));
         };
 
         let unified = union(new Set('abcd'), new Set('aefg'));
@@ -163,30 +153,12 @@ describe('Collections', () => {
 
       it('intersection', () => {
         let intersection = (...sets) => {
-          let result = new Set();
-
-          for (let set1 of sets) {
-            for (let val of set1) {
-              if (result.has(val)) {
-                continue;
-              }
-
-              for (let set2 of sets) {
-                if (set2 === set1) {
-                  continue;
-                }
-                if (set2.has(val)) {
-                  result.add(val);
-                  break;
-                }
-              }
-            }
-          }
-
-          return result;
+          return new Set(sets.reduce((result, set1) => {
+            return result.concat([...set1].filter(element => sets.every(set2 => set2.has(element))));
+          }, []));
         };
 
-        let inter = intersection(new Set('abcd'), new Set('adef'));
+        let inter = intersection(new Set('abcd'), new Set('adef'), new Set('adkl'));
 
         inter.has('a').should.be.true;
         inter.has('d').should.be.true;
@@ -195,6 +167,8 @@ describe('Collections', () => {
         inter.has('c').should.be.false;
         inter.has('e').should.be.false;
         inter.has('f').should.be.false;
+        inter.has('k').should.be.false;
+        inter.has('l').should.be.false;
       });
     });
   });
