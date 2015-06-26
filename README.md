@@ -1,6 +1,8 @@
 # workshop-es6
 A tour around ECMAScript 6
 
+Presentation: http://elkorn.github.io/workshop-es6
+
 ## Setup
 
 ```
