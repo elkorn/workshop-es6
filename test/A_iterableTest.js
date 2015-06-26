@@ -1,7 +1,5 @@
 'use strict';
 
-import co from 'co';
-
 describe('iterables, iterators', () => {
   it('iterators reside under a specific symbol', () => {
     let arr = [1, 2, 3];
