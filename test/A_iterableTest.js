@@ -1,5 +1,7 @@
 'use strict';
 
+import co from 'co';
+
 describe('iterables, iterators', () => {
   it('iterators reside under a specific symbol', () => {
     let arr = [1, 2, 3];
@@ -19,7 +21,7 @@ describe('iterables, iterators', () => {
     mapIter.next().should.have.property('value', [2, 'two']);
     mapIter.next().should.have.property('done', true);
   });
-  
+
   it('iterables allow creating useful combinators', () => {
     function zip(...iterables) {
       const iterators = iterables.map(iterable => iterable[Symbol.iterator]());
@@ -66,6 +68,65 @@ describe('iterables, iterators', () => {
       for (let n of input) {
         n.should.be.equal(x++);
       }
+    });
+  });
+
+  describe('Generators', () => {
+    it('use yield', () => {
+      function* simpleGenerator(howMany) {
+        let x = 0;
+        while (x < howMany) {
+          yield ++x;
+        }
+
+        return 'DONE';
+      }
+
+      let gen = simpleGenerator(3);
+
+      gen.next().should.eql({
+        value: 1,
+        done: false
+      });
+      gen.next().should.eql({
+        value: 2,
+        done: false
+      });
+      gen.next().should.eql({
+        value: 3,
+        done: false
+      });
+
+      gen.next().should.eql({
+        value: 'DONE',
+        done: true
+      });
+
+    });
+    it('allow creating iterables', () => {
+      function* objectEntries(obj) {
+        let propKeys = Reflect.ownKeys(obj);
+
+        for (let propKey of propKeys) {
+          // `yield` returns a value and then pauses
+          // the generator. Later, execution continues
+          // where it was previously paused.
+          yield [propKey, obj[propKey]];
+        }
+      }
+
+      let jane = {
+        first: 'Jane',
+        last: 'Doe'
+      };
+
+      let result = [];
+
+      for (let [key, value] of objectEntries(jane)) {
+        result.push(`${key}: ${value}`);
+      }
+
+      result.should.be.eql(['first: Jane', 'last: Doe']);
     });
   });
 });
